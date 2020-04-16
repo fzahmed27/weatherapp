@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name ="viewport" content = "width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>Firoz Ahmed: Selfi Data App</title>
+    </head>
+
+    <body>
+
+      <h1> Selfi Data App</h1>
+
+      <p>Hello There</p>
+
+      <p>Latitude: <span id = "Lat"></span>&deg;<br/></p>
+      <p>Longitude: <span id = "Long"></span>&deg;</p>
+         
+        <script>
+            if('geolocation' in navigator) {
+                console.log('geolocation is available');
+                navigator.geolocation.getCurrentPosition((async position => {
+                    const lat = position.coords.latitude;
+                    document.getElementById("Lat").textContent = lat.toFixed(3);
+                    const long = position.coords.longitude;
+                    document.getElementById("Long").textContent = long.toFixed(3);
+                    // Transfer data to server  
+                    const data = {lat, long};
+                    const options ={
+                        method :'POST',
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+                        body:JSON.stringify(data)   
+                    };
+                    // Post data to server
+                    const response = await fetch("/api", options);
+                    const data_rec = await response.json();
+                    console.log(data_rec);      
+            }));
+
+            } else {
+                console.log('geolocation IS NOT available');
+            }
+
+
+
+            
+        </script>
+    </body>
+
+</html>

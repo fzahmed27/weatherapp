@@ -1,0 +1,19 @@
+{
+  "name": "module4",
+  "version": "1.0.0",
+  "description": "This is data selfie app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "selfi",
+    "app"
+  ],
+  "author": "FA",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nedb": "^1.8.0"
+  }
+}
